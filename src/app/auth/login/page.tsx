@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import {
   Card,
@@ -8,9 +7,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { useToastStore } from "@/store/toast";
 import { LoginForm } from "@/app/auth/login/components/LoginForm";
-import { LoginFormData } from "@/app/types/login.type";
 import { useLoginForm } from "@/app/auth/login/hooks/useLoginForm";
 import { useSubmitLoginForm } from "@/app/auth/login/hooks/useSubmitLoginForm";
 
@@ -25,8 +22,7 @@ export default function LoginPage() {
           <CardHeader className="justify-center text-center">
             <h1 className="text-3xl font-bold text-foreground">Login</h1>
           </CardHeader>
-
-          <CardContent>
+          <CardContent className="px-8">
             <LoginForm
               register={register}
               errors={errors}
@@ -34,7 +30,6 @@ export default function LoginPage() {
               isLoading={isLoading}
             />
           </CardContent>
-
           <CardFooter className="text-center">
             <p className="w-full text-sm text-muted-foreground">
               Belum memiliki akun?{" "}
