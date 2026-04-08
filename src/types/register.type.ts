@@ -1,6 +1,7 @@
 export type RegisterFormData = {
-  fullName: string;
+  username: string;
   email: string;
   password: string;
-  confirmPassword: string;
-}
+  display_name: string;
+  bio: string;
+};

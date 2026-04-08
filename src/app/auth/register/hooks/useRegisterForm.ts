@@ -1,4 +1,4 @@
-import { RegisterFormData } from "@/app/types/register.type";
+import { RegisterFormData } from "@/types/register.type";
 import { useForm } from "react-hook-form";
 
 export const useRegisterForm = () => {
@@ -6,16 +6,17 @@ export const useRegisterForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
+    trigger,
   } = useForm<RegisterFormData>({
     defaultValues: {
-      fullName: "",
+      username: "",
       email: "",
       password: "",
-      confirmPassword: "",
+      display_name: "",
+      bio: "",
     },
   });
 
-  return {register, handleSubmit, errors, watch, reset}
+  return { register, handleSubmit, errors, reset, trigger };
 };

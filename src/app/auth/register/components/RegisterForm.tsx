@@ -1,119 +1,186 @@
-import { RegisterFormData } from "@/app/types/register.type";
+import { RegisterFormData } from "@/types/register.type";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";
+import { ChevronLeft } from "lucide-react";
 
 type Props = {
   register: UseFormRegister<RegisterFormData>;
   errors: FieldErrors<RegisterFormData>;
-  watch: UseFormWatch<RegisterFormData>;
   submitHandler: () => void;
   isLoading: boolean;
+  step: number;
+  onNextStep: () => void;
+  onPrevStep: () => void;
 };
 
-export const RegisterForm = ({ register, errors, watch, submitHandler, isLoading }: Props) => {
+export const RegisterForm = ({
+  register,
+  errors,
+  submitHandler,
+  isLoading,
+  step,
+  onNextStep,
+  onPrevStep,
+}: Props) => {
   return (
     <form className="flex flex-col gap-4">
-      <div className="space-y-2">
-        <Label htmlFor="fullName">Nama Lengkap</Label>
-        <Input
-          id="fullName"
-          placeholder="Masukkan nama lengkap Anda"
-          disabled={isLoading}
-          {...register("fullName", {
-            required: "Nama lengkap wajib diisi",
-            minLength: {
-              value: 3,
-              message: "Nama minimal 3 karakter",
-            },
-          })}
-        />
-        {errors.fullName && (
-          <p className="text-sm font-medium text-destructive">
-            {errors.fullName.message}
-          </p>
-        )}
-      </div>
+      {step === 1 ? (
+        <>
+          <div className="space-y-2">
+            <Label htmlFor="username">Username</Label>
+            <Input
+              id="username"
+              placeholder="Choose your username"
+              disabled={isLoading}
+              {...register("username", {
+                required: "Username is required",
+                minLength: {
+                  value: 3,
+                  message: "Username must be at least 3 characters",
+                },
+              })}
+            />
+            {errors.username && (
+              <p className="text-sm font-medium text-destructive">
+                {errors.username.message}
+              </p>
+            )}
+          </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          placeholder="nama@example.com"
-          type="email"
-          disabled={isLoading}
-          {...register("email", {
-            required: "Email wajib diisi",
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "Format email tidak valid",
-            },
-          })}
-        />
-        {errors.email && (
-          <p className="text-sm font-medium text-destructive">
-            {errors.email.message}
-          </p>
-        )}
-      </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              placeholder="name@example.com"
+              type="email"
+              disabled={isLoading}
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email format",
+                },
+              })}
+            />
+            {errors.email && (
+              <p className="text-sm font-medium text-destructive">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <Input
-          id="password"
-          placeholder="••••••••"
-          type="password"
-          disabled={isLoading}
-          {...register("password", {
-            required: "Password wajib diisi",
-            minLength: {
-              value: 8,
-              message: "Password minimal 8 karakter",
-            },
-            pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-              message:
-                "Password harus mengandung huruf besar, huruf kecil, dan angka",
-            },
-          })}
-        />
-        {errors.password && (
-          <p className="text-sm font-medium text-destructive">
-            {errors.password.message}
-          </p>
-        )}
-      </div>
+          <div className="space-y-2">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              placeholder="••••••••"
+              type="password"
+              disabled={isLoading}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+                pattern: {
+                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+                  message:
+                    "Password must contain uppercase, lowercase, and numbers",
+                },
+              })}
+            />
+            {errors.password && (
+              <p className="text-sm font-medium text-destructive">
+                {errors.password.message}
+              </p>
+            )}
+          </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="confirmPassword">Konfirmasi Password</Label>
-        <Input
-          id="confirmPassword"
-          placeholder="••••••••"
-          type="password"
-          disabled={isLoading}
-          {...register("confirmPassword", {
-            required: "Konfirmasi password wajib diisi",
-            validate: (value) =>
-              value === watch("password") || "Password tidak cocok",
-          })}
-        />
-        {errors.confirmPassword && (
-          <p className="text-sm font-medium text-destructive">
-            {errors.confirmPassword.message}
-          </p>
-        )}
-      </div>
+          <Button
+            type="button"
+            className="w-full"
+            disabled={isLoading}
+            size="lg"
+            onClick={onNextStep}
+          >
+            Continue
+          </Button>
+        </>
+      ) : (
+        <>
+          <div className="space-y-2">
+            <Label htmlFor="displayName">Display Name</Label>
+            <Input
+              id="displayName"
+              placeholder="What would you like to be called?"
+              disabled={isLoading}
+              {...register("display_name", {
+                required: "Display name is required",
+                minLength: {
+                  value: 2,
+                  message: "Display name must be at least 2 characters",
+                },
+                maxLength: {
+                  value: 30,
+                  message: "Display name must be at most 30 characters",
+                },
+              })}
+            />
+            {errors.display_name && (
+              <p className="text-sm font-medium text-destructive">
+                {errors.display_name.message}
+              </p>
+            )}
+          </div>
 
-      <Button
-        type="submit"
-        className="w-full"
-        disabled={isLoading}
-        size="lg"
-        onClick={submitHandler}
-      >
-        {isLoading ? "Memproses..." : "Daftar"}
-      </Button>
+          <div className="space-y-2">
+            <Label htmlFor="bio">Bio</Label>
+            <textarea
+              id="bio"
+              placeholder="Tell us a little about yourself..."
+              disabled={isLoading}
+              rows={4}
+              className="flex min-h-20 w-full rounded-lg border border-input bg-transparent px-3 py-2 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+              {...register("bio", {
+                maxLength: {
+                  value: 500,
+                  message: "Bio must be at most 500 characters",
+                },
+              })}
+            />
+            {errors.bio && (
+              <p className="text-sm font-medium text-destructive">
+                {errors.bio.message}
+              </p>
+            )}
+          </div>
+
+          <div className="flex gap-3 pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onPrevStep}
+              disabled={isLoading}
+              size="lg"
+              className="flex-1"
+            >
+              <ChevronLeft className="w-4 h-4 mr-2" />
+              Back
+            </Button>
+            <Button
+              type="submit"
+              className="flex-1"
+              disabled={isLoading}
+              size="lg"
+              onClick={submitHandler}
+            >
+              {isLoading ? "Processing..." : "Sign Up"}
+            </Button>
+          </div>
+        </>
+      )}
     </form>
   );
 };
