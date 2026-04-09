@@ -1,4 +1,4 @@
-import { LoginFormData } from "@/app/types/login.type";
+import { LoginFormData } from "@/types/login.type";
 import { useForm } from "react-hook-form";
 
 export const useLoginForm = () => {
