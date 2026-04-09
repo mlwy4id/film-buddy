@@ -1,4 +1,4 @@
-import { LoginFormData } from "@/app/types/login.type";
+import { LoginFormData } from "@/types/login.type";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,14 +8,14 @@ type Props = {
   register: UseFormRegister<LoginFormData>;
   errors: FieldErrors<LoginFormData>;
   submitHandler: () => void;
-  isLoading: boolean;
+  isPending: boolean;
 };
 
 export const LoginForm = ({
   register,
   errors,
   submitHandler,
-  isLoading,
+  isPending,
 }: Props) => {
   return (
     <form className="flex flex-col gap-4">
@@ -25,12 +25,12 @@ export const LoginForm = ({
           id="email"
           placeholder="nama@example.com"
           type="email"
-          disabled={isLoading}
+          disabled={isPending}
           {...register("email", {
-            required: "Email wajib diisi",
+            required: "Email is required",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "Format email tidak valid",
+              message: "Invalid email format",
             },
           })}
         />
@@ -47,12 +47,12 @@ export const LoginForm = ({
           id="password"
           placeholder="••••••••"
           type="password"
-          disabled={isLoading}
+          disabled={isPending}
           {...register("password", {
-            required: "Password wajib diisi",
+            required: "Password is required",
             minLength: {
               value: 6,
-              message: "Password minimal 6 karakter",
+              message: "Password must be at least 6 characters",
             },
           })}
         />
@@ -66,11 +66,11 @@ export const LoginForm = ({
       <Button
         type="submit"
         className="w-full"
-        disabled={isLoading}
+        disabled={isPending}
         size="lg"
         onClick={submitHandler}
       >
-        {isLoading ? "Memproses..." : "Login"}
+        {isPending ? "Processing..." : "Login"}
       </Button>
     </form>
   );
