@@ -55,7 +55,7 @@ export function ToastContainer() {
         return (
           <div
             key={toast.id}
-            className={`flex items-start gap-3 p-4 rounded-lg border ${styles.bg} ${styles.border} ${styles.text} shadow-lg animate-in fade-in slide-in-from-top-2 duration-300`}
+            className={`flex items-end gap-3 p-4 rounded-lg border ${styles.bg} ${styles.border} ${styles.text} shadow-lg animate-in fade-in slide-in-from-top-2 duration-300`}
             role="alert"
           >
             <IconComponent className="w-5 h-5 shrink-0 mt-0.5" />

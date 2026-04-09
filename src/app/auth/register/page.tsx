@@ -13,10 +13,10 @@ import { useSubmitRegisterForm } from "@/app/auth/register/hooks/useSubmitRegist
 import { useRegisterFormStepper } from "@/app/auth/register/hooks/useRegisterFormStepper";
 
 export default function RegisterPage() {
-  const { register, handleSubmit, errors, reset, trigger } =
-    useRegisterForm();
-  const { onSubmit, isLoading } = useSubmitRegisterForm(reset);
-  const {step, handleNextStep, handlePrevStep} = useRegisterFormStepper(trigger);
+  const { register, handleSubmit, errors, reset, trigger } = useRegisterForm();
+  const { onSubmit, isPending } = useSubmitRegisterForm(reset);
+  const { step, handleNextStep, handlePrevStep } =
+    useRegisterFormStepper(trigger);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 px-4 py-8">
@@ -48,7 +48,7 @@ export default function RegisterPage() {
               register={register}
               errors={errors}
               submitHandler={handleSubmit(onSubmit)}
-              isLoading={isLoading}
+              isPending={isPending}
               step={step}
               onNextStep={handleNextStep}
               onPrevStep={handlePrevStep}

@@ -9,7 +9,7 @@ type Props = {
   register: UseFormRegister<RegisterFormData>;
   errors: FieldErrors<RegisterFormData>;
   submitHandler: () => void;
-  isLoading: boolean;
+  isPending: boolean;
   step: number;
   onNextStep: () => void;
   onPrevStep: () => void;
@@ -19,7 +19,7 @@ export const RegisterForm = ({
   register,
   errors,
   submitHandler,
-  isLoading,
+  isPending,
   step,
   onNextStep,
   onPrevStep,
@@ -33,7 +33,7 @@ export const RegisterForm = ({
             <Input
               id="username"
               placeholder="Choose your username"
-              disabled={isLoading}
+              disabled={isPending}
               {...register("username", {
                 required: "Username is required",
                 minLength: {
@@ -55,7 +55,7 @@ export const RegisterForm = ({
               id="email"
               placeholder="name@example.com"
               type="email"
-              disabled={isLoading}
+              disabled={isPending}
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -77,7 +77,7 @@ export const RegisterForm = ({
               id="password"
               placeholder="••••••••"
               type="password"
-              disabled={isLoading}
+              disabled={isPending}
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -101,7 +101,7 @@ export const RegisterForm = ({
           <Button
             type="button"
             className="w-full"
-            disabled={isLoading}
+            disabled={isPending}
             size="lg"
             onClick={onNextStep}
           >
@@ -115,7 +115,7 @@ export const RegisterForm = ({
             <Input
               id="displayName"
               placeholder="What would you like to be called?"
-              disabled={isLoading}
+              disabled={isPending}
               {...register("display_name", {
                 required: "Display name is required",
                 minLength: {
@@ -140,7 +140,7 @@ export const RegisterForm = ({
             <textarea
               id="bio"
               placeholder="Tell us a little about yourself..."
-              disabled={isLoading}
+              disabled={isPending}
               rows={4}
               className="flex min-h-20 w-full rounded-lg border border-input bg-transparent px-3 py-2 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
               {...register("bio", {
@@ -162,7 +162,7 @@ export const RegisterForm = ({
               type="button"
               variant="outline"
               onClick={onPrevStep}
-              disabled={isLoading}
+              disabled={isPending}
               size="lg"
               className="flex-1"
             >
@@ -172,11 +172,11 @@ export const RegisterForm = ({
             <Button
               type="submit"
               className="flex-1"
-              disabled={isLoading}
+              disabled={isPending}
               size="lg"
               onClick={submitHandler}
             >
-              {isLoading ? "Processing..." : "Sign Up"}
+              {isPending ? "Processing..." : "Sign Up"}
             </Button>
           </div>
         </>
