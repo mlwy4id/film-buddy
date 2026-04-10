@@ -1,21 +1,15 @@
 "use client";
 
 import { useGetProfile } from "@/app/profile/hooks/useGetProfile";
-import { useAuthStore } from "@/store/auth";
-import { redirect, useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { Navbar } from "@/components/navbar";
+import { UserRole } from "@/types/auth.type";
+import { UserLayout } from "@/components/UserLayout";
 
-export default function ProfilePage() {
-  const { isAuthenticated } = useAuthStore();
+const ProfileContent = () => {
   const { data: profile, isLoading, error } = useGetProfile();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      redirect("/auth/login");
-    }
-  }, [isAuthenticated]);
 
   if (isLoading) {
     return (
@@ -68,7 +62,7 @@ export default function ProfilePage() {
             <h1 className="text-3xl font-bold">My Profile</h1>
           </CardHeader>
 
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-4">
             <div>
               <label className="text-sm font-semibold text-muted-foreground">
                 Username
@@ -92,6 +86,15 @@ export default function ProfilePage() {
               </p>
             </div>
 
+            <div>
+              <label className="text-sm font-semibold text-muted-foreground">
+                Role
+              </label>
+              <p className="text-lg mt-1 capitalize">
+                {profile.role || "User"}
+              </p>
+            </div>
+
             {profile.bio && (
               <div>
                 <label className="text-sm font-semibold text-muted-foreground">
@@ -100,21 +103,19 @@ export default function ProfilePage() {
                 <p className="text-lg mt-1">{profile.bio}</p>
               </div>
             )}
-
-            <div className="flex gap-3 pt-4">
-              <button
-                onClick={() => {
-                  useAuthStore.getState().clearToken();
-                  redirect("/auth/login");
-                }}
-                className="px-4 py-2 border border-destructive text-destructive rounded-lg font-semibold hover:bg-destructive/10"
-              >
-                Logout
-              </button>
-            </div>
           </CardContent>
         </Card>
       </div>
     </div>
   );
-}
+};
+
+const ProfilePage = () => {
+  return (
+    <UserLayout>
+      <ProfileContent />
+    </UserLayout>
+  );
+};
+
+export default ProfilePage;

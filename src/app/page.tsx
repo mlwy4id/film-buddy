@@ -1,7 +1,7 @@
-const Home = () => {
-  return(
-    <h1>Film Buddy</h1>
-  )
-}
+import { redirect } from "next/navigation";
 
-export default Home
+const HomePage = () => {
+  redirect("/home");
+};
+
+export default HomePage;
