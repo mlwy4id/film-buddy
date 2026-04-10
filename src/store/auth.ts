@@ -91,8 +91,11 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   hasRole: (requiredRole: UserRole | UserRole[]): boolean => {
     const { role } = get();
     const roles = Array.isArray(requiredRole)
-      ? requiredRole
+      ? requiredRole.map((r) => r.toUpperCase())
       : [requiredRole.toUpperCase()];
+
+    console.log(roles);
+
     return roles.includes(role as UserRole);
   },
 

@@ -3,9 +3,6 @@
 import { useGetProfile } from "@/app/profile/hooks/useGetProfile";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
-import { Navbar } from "@/components/navbar";
-import { UserRole } from "@/types/auth.type";
 import { UserLayout } from "@/components/UserLayout";
 
 const ProfileContent = () => {
@@ -46,7 +43,7 @@ const ProfileContent = () => {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 px-4 py-8">
+    <div className="min-h-screen bg-linear-to-br dark:from-slate-950 dark:to-slate-900 px-4 py-8">
       <div className="max-w-2xl mx-auto">
         <div className="mb-6">
           <Link
