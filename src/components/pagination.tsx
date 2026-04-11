@@ -1,11 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
 
 type Props = {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  onPageChange: React.Dispatch<React.SetStateAction<number>>;
   isLoading?: boolean;
 };
 
@@ -15,8 +16,6 @@ export const Pagination = ({
   onPageChange,
   isLoading = false,
 }: Props) => {
-  if (totalPages <= 1) return null;
-
   const handlePrevious = () => {
     onPageChange(Math.max(1, currentPage - 1));
   };
@@ -30,6 +29,8 @@ export const Pagination = ({
   };
 
   const getPageNumbers = () => {
+    if (!totalPages || totalPages < 1) return [];
+
     const pages = [];
     const start = Math.max(1, currentPage - 2);
     const end = Math.min(totalPages, start + 4);
@@ -49,8 +50,9 @@ export const Pagination = ({
         variant="outline"
         disabled={currentPage === 1 || isLoading}
         onClick={handlePrevious}
+        className="border-0"
       >
-        Previous
+        <LucideChevronLeft />
       </Button>
 
       <div className="flex items-center gap-2">
@@ -74,8 +76,9 @@ export const Pagination = ({
         variant="outline"
         disabled={currentPage === totalPages || isLoading}
         onClick={handleNext}
+        className="border-0"
       >
-        Next
+        <LucideChevronRight />
       </Button>
     </div>
   );
