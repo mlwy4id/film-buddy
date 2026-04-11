@@ -1,19 +1,29 @@
-import { User } from "@/types/auth.type";
-
 export type Genre = {
   id: string;
   name: string;
 };
 
-export type Review = {
+export interface Reaction {
+  id: string;
+  review_id: string;
+  user_id: string;
+  status: "like" | "dislike";
+}
+
+export interface Review {
   id: string;
   user_id: string;
   rating: number;
   comment: string;
   likes: number;
   dislikes: number;
-  user: User;
-};
+  reactions: Reaction[];
+  user: {
+    id: string;
+    display_name: string;
+    username: string;
+  };
+}
 
 export type Film = {
   id: string;

@@ -103,7 +103,7 @@ export const FilmDetailsContainer = ({ filmId }: { filmId: string }) => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {film.reviews.map((review: Review) => (
-              <ReviewCard key={review.id} review={review} />
+              <ReviewCard key={review.id} review={review} filmId={film.id} />
             ))}
           </div>
         </div>

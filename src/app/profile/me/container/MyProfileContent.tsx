@@ -12,10 +12,10 @@ import { UserWatchlistContainer } from "@/app/profile/container/UserWatchlistCon
 
 export const MyProfileContent = () => {
   const { data, isLoading, error } = useGetMyProfile();
-  const profile = data?.personal_info || [];
+  const profile = data?.personal_info || undefined;
 
   const { data: profileDetails, isLoading: isProfileLoading } = useGetProfile(
-    profile.id,
+    profile?.id,
   );
 
   if (isLoading || isProfileLoading) return <ProfileLoading />;

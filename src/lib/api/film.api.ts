@@ -33,17 +33,6 @@ export const deleteGenre = async (genreId: string) => {
   return res.data;
 };
 
-export const getFilmReviews = async (
-  filmId: string,
-  page: number = 1,
-  take: number = 10,
-) => {
-  const res = await api.get(`/reviews`, {
-    params: { page, take },
-  });
-  return res.data;
-};
-
 export const createReview = async (data: {
   film_id: string;
   rating: number;
@@ -53,20 +42,16 @@ export const createReview = async (data: {
   return res.data;
 };
 
-export const createReaction = async (reviewId: string, type: string) => {
+export const createReaction = async (reviewId: string, status: string) => {
   const res = await api.post("/reactions", {
     review_id: reviewId,
-    type,
+    status,
   });
   return res.data;
 };
 
-export const updateReaction = async (reactionId: string, type: string) => {
-  const res = await api.put(`/reactions/${reactionId}`, { type });
+export const updateReaction = async (reactionId: string, status: string) => {
+  const res = await api.put(`/reactions/${reactionId}`, { status });
   return res.data;
 };
 
-export const deleteReaction = async (reactionId: string) => {
-  const res = await api.delete(`/reactions/${reactionId}`);
-  return res.data;
-};

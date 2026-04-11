@@ -18,7 +18,7 @@ export const useLoginMutation = (reset?: () => void) => {
 
       setToken(data.data.token);
 
-      router.push("/home");
+      router.push("/profile/me");
     },
     onError: (error) => {
       addToast("An error occurred during login", "error");
