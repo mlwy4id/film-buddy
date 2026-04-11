@@ -2,7 +2,7 @@ import { useGetFilms } from "@/app/home/hooks/useFilms";
 import { FilmCard } from "@/components/FilmCard";
 import { FilmSearchFilter } from "@/app/films/components/FilmSearchFilter";
 import { Pagination } from "@/components/pagination";
-import { Film } from "@/types/film.type";
+import { Film, FilmDetail } from "@/types/film.type";
 import { useState } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
 import { FilmsContainerSkeleton } from "@/app/films/components/FilmsContainerSkeleton";
@@ -47,7 +47,7 @@ export const FilmsSection = () => {
         <FilmsContainerSkeleton take={take} />
       ) : films.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          {films.map((film: Film) => (
+          {films.map((film: FilmDetail) => (
             <FilmCard key={film.id} film={film} />
           ))}
         </div>
