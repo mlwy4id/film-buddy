@@ -1,10 +1,12 @@
 import { useGetFilms } from "@/app/home/hooks/useFilms";
-import { FilmCard } from "@/app/home/components/FilmCard";
-import { FilmSearchFilter } from "@/app/home/components/FilmSearchFilter";
+import { FilmCard } from "@/components/FilmCard";
+import { FilmSearchFilter } from "@/app/films/components/FilmSearchFilter";
 import { Pagination } from "@/components/pagination";
 import { Film } from "@/types/film.type";
 import { useState } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
+import { FilmsContainerSkeleton } from "@/app/films/components/FilmsContainerSkeleton";
+import { FilmsNotFound } from "@/app/films/components/FilmsNotFound";
 
 export const FilmsSection = () => {
   const [page, setPage] = useState<number>(1);
@@ -31,9 +33,7 @@ export const FilmsSection = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-4">
-          {debouncedQuery
-            ? `Search Results: "${debouncedQuery}"`
-            : "Popular Films"}
+          {debouncedQuery ? `Search Results: "${debouncedQuery}"` : "All Films"}
         </h2>
         <FilmSearchFilter
           searchQuery={searchQuery}
@@ -44,14 +44,7 @@ export const FilmsSection = () => {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          {[...Array(take < 20 ? 12 : take)].slice(0, take).map((_, i) => (
-            <div key={i} className="space-y-2">
-              <div className="aspect-2/3 bg-slate-200 dark:bg-slate-800 rounded-lg animate-pulse" />
-              <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded animate-pulse w-3/4" />
-            </div>
-          ))}
-        </div>
+        <FilmsContainerSkeleton take={take} />
       ) : films.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {films.map((film: Film) => (
@@ -59,13 +52,7 @@ export const FilmsSection = () => {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">
-            {debouncedQuery
-              ? `No films found for "${debouncedQuery}"`
-              : "No films found"}
-          </p>
-        </div>
+        <FilmsNotFound />
       )}
 
       {pagination && pagination.total_page >= 1 && (

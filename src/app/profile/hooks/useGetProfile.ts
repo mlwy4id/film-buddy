@@ -9,6 +9,5 @@ export const useGetProfile = () => {
     queryKey: ["profile"],
     queryFn: getProfile,
     enabled: isAuthenticated,
-    staleTime: 1000 * 60 * 5,
   });
 };

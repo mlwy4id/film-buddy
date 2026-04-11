@@ -2,9 +2,9 @@
 
 import { Navbar } from "@/components/navbar";
 import { GenresSection } from "@/app/home/container/GenresContainer";
-import { FilmsSection } from "@/app/home/container/FilmsContainer";
+import { PopularFilmsSection } from "@/app/home/container/PopularFilmsContainer";
 
-export default function Home() {
+const HomePage = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
       <Navbar />
@@ -26,8 +26,10 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
         <GenresSection />
-        <FilmsSection />
+        <PopularFilmsSection />
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;

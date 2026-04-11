@@ -4,6 +4,7 @@ import { useGetProfile } from "@/app/profile/hooks/useGetProfile";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { UserLayout } from "@/components/UserLayout";
+import { LucideArrowLeft } from "lucide-react";
 
 const ProfileContent = () => {
   const { data: profile, isLoading, error } = useGetProfile();
@@ -43,18 +44,18 @@ const ProfileContent = () => {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br dark:from-slate-950 dark:to-slate-900 px-4 py-8">
+    <div className="min-h-screen bg-linear-to-br dark:from-slate-950 dark:to-slate-900">
       <div className="max-w-2xl mx-auto">
         <div className="mb-6">
           <Link
             href="/"
-            className="text-primary hover:underline text-sm font-semibold"
+            className="text-primary hover:underline text-sm font-semibold flex items-center gap-2"
           >
-            ← Back to Home
+            <LucideArrowLeft size={16} /> Back to Home
           </Link>
         </div>
 
-        <Card>
+        <Card className="px-4 py-8">
           <CardHeader>
             <h1 className="text-3xl font-bold">My Profile</h1>
           </CardHeader>
@@ -80,15 +81,6 @@ const ProfileContent = () => {
               </label>
               <p className="text-lg mt-1">
                 {profile.display_name || "Not set"}
-              </p>
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold text-muted-foreground">
-                Role
-              </label>
-              <p className="text-lg mt-1 capitalize">
-                {profile.role || "User"}
               </p>
             </div>
 

@@ -18,7 +18,6 @@ export const Navbar = () => {
   return (
     <nav className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-2 font-bold text-xl shrink-0"
@@ -27,7 +26,6 @@ export const Navbar = () => {
           <span className="hidden sm:inline">Film Buddy</span>
         </Link>
 
-        {/* Navigation Links */}
         <div className="flex items-center gap-6">
           <Link
             href="/"
@@ -39,7 +37,7 @@ export const Navbar = () => {
             href="/films"
             className="text-sm font-medium hover:text-primary transition-colors"
           >
-            Explore
+            Films
           </Link>
 
           {isAdmin() && (
@@ -52,7 +50,6 @@ export const Navbar = () => {
             </Link>
           )}
 
-          {/* Auth Links */}
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
               <Link href="/profile">
@@ -60,12 +57,13 @@ export const Navbar = () => {
                   My Profile
                 </Button>
               </Link>
-              <button
+              <Button
                 onClick={handleLogout}
-                className="text-sm font-medium px-3 py-1.5 bg-destructive text-destructive-foreground rounded-lg hover:opacity-90 transition-opacity"
+                variant="destructive"
+                className="text-sm font-medium px-3 py-1.5 bg-destructive text-white hover:bg-destructive/70 hover:font-semibold transition"
               >
                 Logout
-              </button>
+              </Button>
             </div>
           ) : (
             <div className="flex items-center gap-3">

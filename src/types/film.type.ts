@@ -1,6 +1,18 @@
+import { User } from "@/types/auth.type";
+
 export type Genre = {
   id: string;
   name: string;
+};
+
+export type Review = {
+  id: string;
+  user_id: string;
+  rating: number;
+  comment: string;
+  likes: number;
+  dislikes: number;
+  user: User;
 };
 
 export type Film = {
@@ -15,10 +27,15 @@ export type Film = {
   genres?: Genre[];
 };
 
-export type FilmDetail = Film & {
-  description: string;
-  studio?: string;
-  source?: string;
-  episodes?: number;
-  score: number;
+export type FilmDetail = {
+  id: string;
+  title: string;
+  synopsis: string;
+  airing_status: string;
+  total_episodes: number;
+  release_date: string;
+  images: string[];
+  genres: Genre[];
+  reviews: Review[];
+  average_rating: number;
 };
