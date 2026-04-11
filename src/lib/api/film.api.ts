@@ -55,3 +55,19 @@ export const updateReaction = async (reactionId: string, status: string) => {
   return res.data;
 };
 
+export const createFilmList = async (data: {
+  film_id: string;
+  list_status: "watching" | "completed" | "plan_to_watch";
+}) => {
+  const res = await api.post("/film-lists", data);
+  return res.data;
+};
+
+export const updateFilmListVisibility = async (
+  filmListId: string,
+  visibility: "public" | "private",
+) => {
+  const res = await api.patch(`/film-lists/${filmListId}`, { visibility });
+  return res.data;
+};
+

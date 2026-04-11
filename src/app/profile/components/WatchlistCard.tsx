@@ -1,8 +1,20 @@
 import { FilmList } from "@/types/watchlist.type";
 import { Card } from "@/components/ui/card";
-import { CheckCircle, Clock } from "lucide-react";
+import { CheckCircle, Clock, Globe, Lock } from "lucide-react";
+import { useState } from "react";
+import { useUpdateFilmListVisibility } from "@/app/films/hooks/useWatchlistMutation";
 
 export const WatchlistCard = ({ watchlist }: { watchlist: FilmList }) => {
+  const [isVisibilityOpen, setIsVisibilityOpen] = useState(false);
+  const { mutate: updateVisibility, isPending } = useUpdateFilmListVisibility();
+
+  const handleVisibilityChange = (visibility: "public" | "private") => {
+    if (watchlist.id) {
+      updateVisibility({ filmListId: watchlist.id, visibility });
+      setIsVisibilityOpen(false);
+    }
+  };
+
   return (
     <Card className="p-4 hover:shadow-md transition-shadow">
       <div className="space-y-3">
@@ -36,6 +48,47 @@ export const WatchlistCard = ({ watchlist }: { watchlist: FilmList }) => {
             {watchlist.list_status}
           </span>
         </p>
+
+        <div className="relative">
+          <button
+            onClick={() => setIsVisibilityOpen(!isVisibilityOpen)}
+            disabled={isPending}
+            className="flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors disabled:opacity-50"
+          >
+            {watchlist.visibility === "private" ? (
+              <>
+                <Lock className="w-3 h-3" />
+                Private
+              </>
+            ) : (
+              <>
+                <Globe className="w-3 h-3" />
+                Public
+              </>
+            )}
+          </button>
+
+          {isVisibilityOpen && (
+            <div className="absolute bottom-full mb-2 left-0 bg-background border border-input rounded-md shadow-lg z-10 w-32">
+              <button
+                onClick={() => handleVisibilityChange("public")}
+                disabled={isPending}
+                className="w-full text-left px-3 py-2 text-sm hover:bg-muted disabled:opacity-50 flex items-center gap-2"
+              >
+                <Globe className="w-3 h-3" />
+                Public
+              </button>
+              <button
+                onClick={() => handleVisibilityChange("private")}
+                disabled={isPending}
+                className="w-full text-left px-3 py-2 text-sm hover:bg-muted disabled:opacity-50 flex items-center gap-2"
+              >
+                <Lock className="w-3 h-3" />
+                Private
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </Card>
   );

@@ -5,6 +5,7 @@ import { FilmDetailLoading } from "@/app/films/[id]/components/FilmDetailLoading
 import { FilmDetailError } from "@/app/films/[id]/components/FilmDetailError";
 import { ReviewCard } from "@/components/ReviewCard";
 import { ReviewForm } from "@/app/films/[id]/components/ReviewForm";
+import { AddToWatchlistButton } from "@/app/films/[id]/components/AddToWatchlistButton";
 import { Genre, Review } from "@/types/film.type";
 import { GenreButton } from "@/components/GenreButton";
 import { FilmsNotFound } from "@/app/films/components/FilmsNotFound";
@@ -93,6 +94,10 @@ export const FilmDetailsContainer = ({ filmId }: { filmId: string }) => {
               </p>
             </div>
           )}
+
+          <div>
+            <AddToWatchlistButton filmId={filmId} />
+          </div>
         </div>
       </div>
 
