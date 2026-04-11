@@ -3,7 +3,7 @@ import Link from "next/link";
 import { LucideArrowLeft, Star } from "lucide-react";
 import { FilmDetailLoading } from "@/app/films/[id]/components/FilmDetailLoading";
 import { FilmDetailError } from "@/app/films/[id]/components/FilmDetailError";
-import { ReviewCard } from "@/app/films/[id]/components/ReviewCard";
+import { ReviewCard } from "@/components/ReviewCard";
 import { Genre, Review } from "@/types/film.type";
 import { GenreButton } from "@/components/GenreButton";
 import { FilmsNotFound } from "@/app/films/components/FilmsNotFound";

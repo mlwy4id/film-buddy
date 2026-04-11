@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -52,7 +50,7 @@ export const Navbar = () => {
 
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
-              <Link href="/profile">
+              <Link href="/profile/me">
                 <Button variant="outline" size="sm">
                   My Profile
                 </Button>

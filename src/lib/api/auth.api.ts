@@ -1,7 +1,6 @@
 import { api } from "@/lib/axios";
 import { LoginFormData } from "@/types/login.type";
 import { RegisterFormData } from "@/types/register.type";
-import { UserProfile } from "@/types/profile.type";
 
 export const register = async (data: RegisterFormData) => {
   const res = await api.post("/auth/register", data);
@@ -13,7 +12,7 @@ export const login = async (data: LoginFormData) => {
   return res.data;
 };
 
-export const getProfile = async () => {
+export const getMe = async () => {
   const res = await api.get("/auth/me");
-  return res.data.data.personal_info;
+  return res.data.data;
 };
