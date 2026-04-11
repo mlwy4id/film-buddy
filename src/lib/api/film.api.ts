@@ -44,6 +44,15 @@ export const getFilmReviews = async (
   return res.data;
 };
 
+export const createReview = async (data: {
+  film_id: string;
+  rating: number;
+  comment: string;
+}) => {
+  const res = await api.post("/reviews", data);
+  return res.data;
+};
+
 export const createReaction = async (reviewId: string, type: string) => {
   const res = await api.post("/reactions", {
     review_id: reviewId,

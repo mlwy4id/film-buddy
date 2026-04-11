@@ -4,6 +4,7 @@ import { LucideArrowLeft, Star } from "lucide-react";
 import { FilmDetailLoading } from "@/app/films/[id]/components/FilmDetailLoading";
 import { FilmDetailError } from "@/app/films/[id]/components/FilmDetailError";
 import { ReviewCard } from "@/components/ReviewCard";
+import { ReviewForm } from "@/app/films/[id]/components/ReviewForm";
 import { Genre, Review } from "@/types/film.type";
 import { GenreButton } from "@/components/GenreButton";
 import { FilmsNotFound } from "@/app/films/components/FilmsNotFound";
@@ -95,7 +96,7 @@ export const FilmDetailsContainer = ({ filmId }: { filmId: string }) => {
         </div>
       </div>
 
-      {film.reviews && film.reviews.length > 0 && (
+      {film.reviews && film.reviews.length > 0 ? (
         <div className="space-y-4 pt-8 border-t">
           <h2 className="text-2xl font-bold">
             Reviews ({film.reviews.length})
@@ -106,15 +107,17 @@ export const FilmDetailsContainer = ({ filmId }: { filmId: string }) => {
             ))}
           </div>
         </div>
-      )}
-
-      {(!film.reviews || film.reviews.length === 0) && (
+      ) : (
         <div className="text-center py-12 border-t mt-8">
           <p className="text-muted-foreground">
             No reviews yet. Be the first to review!
           </p>
         </div>
       )}
+
+      <div className="border-t pt-8">
+        <ReviewForm filmId={filmId} />
+      </div>
     </div>
   );
 };

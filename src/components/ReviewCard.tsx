@@ -25,7 +25,7 @@ export const ReviewCard = ({
 
       <p className="text-sm text-foreground mb-8">{review.comment}</p>
 
-      {review.likes && (
+      {review.likes >= 0 && (
         <div className="absolute bottom-0 flex items-center gap-4 py-2">
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <ThumbsUp className="w-4 h-4" />

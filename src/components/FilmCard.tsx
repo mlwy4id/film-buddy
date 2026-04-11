@@ -8,6 +8,7 @@ type Props = {
 };
 
 export const FilmCard = ({ film }: Props) => {
+  const year = film.release_date.split(" ")[0].split("-")[0];
   return (
     <Link href={`/films/${film.id}`}>
       <div className="group cursor-pointer h-full">
@@ -27,9 +28,7 @@ export const FilmCard = ({ film }: Props) => {
           <h3 className="font-bold text-sm line-clamp-2 group-hover:text-primary transition-colors">
             {filmFormat(film.title)}
           </h3>
-          <p className="text-xs text-muted-foreground">
-            {new Date(film.release_date).getFullYear()}
-          </p>
+          <p className="text-xs text-muted-foreground">{year}</p>
         </div>
       </div>
     </Link>
