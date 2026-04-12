@@ -1,12 +1,12 @@
 "use client";
 
 import { AdminLayout } from "@/components/AdminLayout";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { GenresTable } from "./components/GenresTable";
 
-const GenresAdminPage = () => {
+export default function GenresAdminPage() {
   return (
     <AdminLayout>
       <div className="space-y-6">
@@ -25,19 +25,8 @@ const GenresAdminPage = () => {
           </Button>
         </div>
 
-        <Card>
-          <CardHeader>
-            <h2 className="text-xl font-bold">Genres Table</h2>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground text-center py-8">
-              Genres table coming soon...
-            </p>
-          </CardContent>
-        </Card>
+        <GenresTable />
       </div>
     </AdminLayout>
   );
-};
-
-export default GenresAdminPage;
+}

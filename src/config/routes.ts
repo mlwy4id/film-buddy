@@ -15,8 +15,10 @@ export const PUBLIC_ROUTES = [
   "/auth/register",
   "/home",
   "/films",
+  "/films/[id]",
   "/genres",
   "/users",
+  "/users/[username]",
 ];
 
 export const AUTH_ROUTES = ["/auth/login", "/auth/register"];

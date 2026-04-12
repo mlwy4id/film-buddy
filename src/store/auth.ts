@@ -100,7 +100,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   },
 
   isAdmin: (): boolean => {
-    return get().role === UserRole.ADMIN;
+    return get().role.toLowerCase() === UserRole.ADMIN;
   },
 
   isUser: (): boolean => {

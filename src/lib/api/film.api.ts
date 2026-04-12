@@ -28,6 +28,23 @@ export const getGenres = async () => {
   return res.data;
 };
 
+export const getGenresAdmin = async (page: number, take: number) => {
+  const res = await api.get("/genres/admin", {
+    params: { page, take },
+  });
+  return res.data;
+};
+
+export const createGenre = async (data: { name: string }) => {
+  const res = await api.post("/genres", data);
+  return res.data;
+};
+
+export const updateGenre = async (genreId: string, data: { name: string }) => {
+  const res = await api.put(`/genres/${genreId}`, data);
+  return res.data;
+};
+
 export const deleteGenre = async (genreId: string) => {
   const res = await api.delete(`/genres/${genreId}`);
   return res.data;
@@ -70,4 +87,3 @@ export const updateFilmListVisibility = async (
   const res = await api.patch(`/film-lists/${filmListId}`, { visibility });
   return res.data;
 };
-
