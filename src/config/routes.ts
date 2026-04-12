@@ -22,7 +22,6 @@ export const PUBLIC_ROUTES = [
 ];
 
 export const AUTH_ROUTES = ["/auth/login", "/auth/register"];
-
 export const REDIRECT_AUTHENTICATED_ROUTES = ["/auth/login", "/auth/register"];
 
 export const isPublicRoute = (pathname: string): boolean => {
