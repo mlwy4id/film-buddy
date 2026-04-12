@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getFilmDetail } from "@/lib/api/film.api";
+import { getFilmDetail, getGenresAdmin } from "@/lib/api/film.api";
 
 export const useFilmDetail = (filmId: string) => {
   return useQuery({
@@ -9,3 +9,9 @@ export const useFilmDetail = (filmId: string) => {
   });
 };
 
+export const useGenresAdmin = (page: number = 1, take: number = 20) => {
+  return useQuery({
+    queryKey: ["genres-admin", page],
+    queryFn: () => getGenresAdmin(page, take),
+  });
+};

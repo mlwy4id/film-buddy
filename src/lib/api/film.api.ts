@@ -18,8 +18,12 @@ export const getFilmDetail = async (filmId: string) => {
   return res.data;
 };
 
-export const createFilm = async (data: Partial<Film>) => {
-  const res = await api.post("/films", data);
+export const createFilm = async (data: FormData) => {
+  const res = await api.post("/films", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res.data;
 };
 

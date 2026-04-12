@@ -1,10 +1,10 @@
 "use client";
 
 import { AdminLayout } from "@/components/AdminLayout";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { FilmForm } from "./components/FilmForm";
 
 const FilmsAdminPage = () => {
   return (
@@ -25,16 +25,7 @@ const FilmsAdminPage = () => {
           </Button>
         </div>
 
-        <Card>
-          <CardHeader>
-            <h2 className="text-xl font-bold">Add New Film</h2>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground text-center py-8">
-              Film form coming soon...
-            </p>
-          </CardContent>
-        </Card>
+        <FilmForm />
       </div>
     </AdminLayout>
   );
