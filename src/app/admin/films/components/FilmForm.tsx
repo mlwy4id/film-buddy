@@ -79,7 +79,7 @@ export const FilmForm = () => {
         <h2 className="text-xl font-bold">Add New Film</h2>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-2xl">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Title */}
           <div className="space-y-2">
             <Label htmlFor="title">Film Title *</Label>

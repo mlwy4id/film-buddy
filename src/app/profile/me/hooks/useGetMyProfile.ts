@@ -5,7 +5,6 @@ export const useGetMyProfile = () => {
   return useQuery({
     queryKey: ["me"],
     queryFn: getMe,
-    staleTime: Infinity,
     retry: 2,
   });
 };

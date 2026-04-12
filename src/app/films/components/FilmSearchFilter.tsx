@@ -9,8 +9,8 @@ interface FilmSearchFilterProps {
 }
 
 const TAKE_OPTIONS = [
-  { label: "5 per page", value: 5 },
-  { label: "10 per page", value: 10 },
+  { label: "6 per page", value: 6 },
+  { label: "12 per page", value: 12 },
 ];
 
 export const FilmSearchFilter = ({

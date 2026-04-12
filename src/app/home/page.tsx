@@ -23,7 +23,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 py-12 space-y-6">
         <GenresSection />
         <PopularFilmsSection />
       </div>

@@ -10,7 +10,7 @@ import { FilmsNotFound } from "@/app/films/components/FilmsNotFound";
 
 export const FilmsSection = () => {
   const [page, setPage] = useState<number>(1);
-  const [take, setTake] = useState<number>(10);
+  const [take, setTake] = useState<number>(12);
   const [searchQuery, setSearchQuery] = useState("");
 
   const debouncedQuery = useDebounce(searchQuery, 300);

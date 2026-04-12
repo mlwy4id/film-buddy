@@ -4,7 +4,7 @@ import { AdminLayout } from "@/components/AdminLayout";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Plus, List } from "lucide-react";
+import { List, LucideFilm } from "lucide-react";
 
 const AdminPage = () => {
   return (
@@ -38,7 +38,7 @@ const AdminPage = () => {
           <Card>
             <CardHeader>
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <Plus className="w-5 h-5" />
+                <LucideFilm />
                 Films
               </h2>
             </CardHeader>

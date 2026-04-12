@@ -10,6 +10,12 @@ const FilmsAdminPage = () => {
   return (
     <AdminLayout>
       <div className="space-y-6">
+        <Button asChild variant="outline">
+          <Link href="/admin" className="flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </Link>
+        </Button>
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold mb-2">Films Management</h1>
@@ -17,14 +23,7 @@ const FilmsAdminPage = () => {
               Add new films to the database
             </p>
           </div>
-          <Button asChild variant="outline">
-            <Link href="/admin" className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Back
-            </Link>
-          </Button>
         </div>
-
         <FilmForm />
       </div>
     </AdminLayout>
