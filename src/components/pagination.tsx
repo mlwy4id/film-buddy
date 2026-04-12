@@ -1,6 +1,5 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
+import { usePagination } from "@/hooks/usePagination";
 import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
 
 type Props = {
@@ -16,33 +15,13 @@ export const Pagination = ({
   onPageChange,
   isLoading = false,
 }: Props) => {
-  const handlePrevious = () => {
-    onPageChange(Math.max(1, currentPage - 1));
-  };
-
-  const handleNext = () => {
-    onPageChange(Math.min(totalPages, currentPage + 1));
-  };
-
-  const handlePageClick = (page: number) => {
-    onPageChange(page);
-  };
-
-  const getPageNumbers = () => {
-    if (!totalPages || totalPages < 1) return [];
-
-    const pages = [];
-    const start = Math.max(1, currentPage - 2);
-    const end = Math.min(totalPages, start + 4);
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
-    }
-
-    return pages;
-  };
-
-  const pageNumbers = getPageNumbers();
+  const {
+    handleNext,
+    handlePrevious,
+    handlePageClick,
+    getPaginationPageNumbers,
+  } = usePagination(onPageChange, totalPages, currentPage);
+  const pageNumbers = getPaginationPageNumbers(totalPages, currentPage);
 
   return (
     <div className="flex items-center justify-center gap-3 pt-4">

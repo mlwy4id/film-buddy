@@ -1,4 +1,4 @@
-import { genreFormat } from "@/lib/genreFormat";
+import { genreFormat } from "@/utils/genreFormat";
 import { Genre } from "@/types/film.type";
 
 type Props = {
