@@ -1,5 +1,4 @@
 import { api } from "@/lib/axios";
-import { Film } from "@/types/film.type";
 
 export const getFilms = async (
   page: number,

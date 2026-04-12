@@ -8,7 +8,6 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
       <Navbar />
-
       <div className="bg-linear-to-r from-primary to-primary/80 dark:from-primary/40 dark:to-primary/20 px-4 py-12">
         <div className="max-w-7xl mx-auto">
           <div className="space-y-4">

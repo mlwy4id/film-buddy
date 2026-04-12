@@ -6,5 +6,6 @@ export const useGetMyProfile = () => {
     queryKey: ["me"],
     queryFn: getMe,
     staleTime: Infinity,
+    retry: 2,
   });
 };

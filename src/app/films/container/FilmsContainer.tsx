@@ -2,7 +2,7 @@ import { useGetFilms } from "@/app/home/hooks/useFilms";
 import { FilmCard } from "@/components/FilmCard";
 import { FilmSearchFilter } from "@/app/films/components/FilmSearchFilter";
 import { Pagination } from "@/components/pagination";
-import { Film, FilmDetail } from "@/types/film.type";
+import { FilmDetail } from "@/types/film.type";
 import { useState } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
 import { FilmsContainerSkeleton } from "@/app/films/components/FilmsContainerSkeleton";

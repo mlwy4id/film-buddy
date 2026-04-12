@@ -5,7 +5,6 @@ export const useFilmDetail = (filmId: string) => {
   return useQuery({
     queryKey: ["film", filmId],
     queryFn: () => getFilmDetail(filmId),
-    enabled: !!filmId,
   });
 };
 

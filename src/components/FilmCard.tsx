@@ -1,7 +1,7 @@
 import { FilmDetail } from "@/types/film.type";
 import Link from "next/link";
 import { Star } from "lucide-react";
-import { filmFormat } from "@/lib/filmFormat";
+import { filmFormat } from "@/utils/filmFormat";
 
 type Props = {
   film: FilmDetail;
