@@ -11,8 +11,9 @@ export const useReviewReaction = (review: Review, filmId: string) => {
   const { isAuthenticated, user } = useAuthStore();
   const router = useRouter();
 
-  const existingReaction =
-    review.reactions?.find((r) => r.user_id === user?.id);
+  const existingReaction = review.reactions?.find(
+    (r) => r.user_id === user?.id,
+  );
 
   const [userReaction, setUserReaction] = useState<"like" | "dislike" | null>(
     existingReaction?.status || null,
@@ -36,7 +37,13 @@ export const useReviewReaction = (review: Review, filmId: string) => {
       return;
     }
 
+    if (isCreating || isUpdating) return;
+
     if (userReaction === type) return;
+
+    const previousReaction = userReaction;
+    const previousCounts = { ...counts };
+    const previousReactionId = reactionId;
 
     setCounts((prev) => {
       const next = { ...prev };
@@ -44,17 +51,15 @@ export const useReviewReaction = (review: Review, filmId: string) => {
       next[`${type}s`]++;
       return next;
     });
-
-    const previousReaction = userReaction;
     setUserReaction(type);
 
-    if (reactionId) {
+    if (previousReactionId) {
       updateReaction(
-        { reactionId, status: type },
+        { reactionId: previousReactionId, status: type },
         {
           onError: () => {
             setUserReaction(previousReaction);
-            setCounts({ likes: review.likes, dislikes: review.dislikes });
+            setCounts(previousCounts);
           },
         },
       );
@@ -64,8 +69,9 @@ export const useReviewReaction = (review: Review, filmId: string) => {
         {
           onSuccess: (data) => setReactionId(data.id),
           onError: () => {
-            setUserReaction(null);
-            setCounts({ likes: review.likes, dislikes: review.dislikes });
+            setUserReaction(previousReaction);
+            setCounts(previousCounts);
+            setReactionId(null);
           },
         },
       );
