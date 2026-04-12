@@ -5,8 +5,6 @@ type RoutePermission = UserRole | UserRole[];
 export const PROTECTED_ROUTES: Record<string, RoutePermission> = {
   "/profile": UserRole.USER,
   "/admin": UserRole.ADMIN,
-  "/watchlist": UserRole.USER,
-  "/reviews": UserRole.USER,
 };
 
 export const PUBLIC_ROUTES = [
@@ -17,8 +15,6 @@ export const PUBLIC_ROUTES = [
   "/films",
   "/films/[id]",
   "/genres",
-  "/users",
-  "/users/[username]",
 ];
 
 export const AUTH_ROUTES = ["/auth/login", "/auth/register"];
