@@ -2,6 +2,7 @@ import { FilmDetail } from "@/types/film.type";
 import Link from "next/link";
 import { Star } from "lucide-react";
 import { filmFormat } from "@/utils/filmFormat";
+import Image from "next/image";
 
 type Props = {
   film: FilmDetail;
@@ -14,10 +15,12 @@ export const FilmCard = ({ film }: Props) => {
       <div className="group cursor-pointer h-full">
         <div className="relative overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-800 aspect-2/3 mb-3">
           {film.images && film.images.length > 0 ? (
-            <img
+            <Image
               src={`https://film-management-api.labse.id/api/static/${film.images[0]}`}
               alt={film.title}
               className="w-full rounded-lg shadow-lg aspect-2/3 object-cover"
+              width={400}
+              height={600}
             />
           ) : (
             <div className="relative overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-800 aspect-2/3 mb-3">
@@ -29,7 +32,7 @@ export const FilmCard = ({ film }: Props) => {
           <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm rounded-lg px-2 py-1 flex items-center gap-1">
             <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
             <span className="text-sm font-bold text-white">
-              {film.average_rating}
+              {film.average_rating.toFixed(1)}
             </span>
           </div>
         </div>
