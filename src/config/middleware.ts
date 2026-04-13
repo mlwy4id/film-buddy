@@ -6,11 +6,7 @@ import {
   getRequiredRoleForRoute,
   REDIRECT_AUTHENTICATED_ROUTES,
 } from "@/config/routes";
-import {
-  decodeToken,
-  isTokenExpired,
-  hasRole,
-} from "@/lib/auth";
+import { decodeToken, isTokenExpired, hasRole } from "@/lib/auth";
 
 export const middleware = (request: NextRequest) => {
   const pathname = request.nextUrl.pathname;
@@ -45,10 +41,8 @@ export const middleware = (request: NextRequest) => {
   }
 
   return NextResponse.next();
-}
+};
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|public).*)",
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|public|auth).*)"],
 };
