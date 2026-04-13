@@ -22,7 +22,12 @@ export const UserReviewContainer = ({
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {reviews.map((review, i) => (
-          <ReviewCard key={i} review={review} profileName={profileName} />
+          <ReviewCard
+            key={i}
+            review={review}
+            profileName={profileName}
+            filmId=""
+          />
         ))}
       </div>
     </div>
